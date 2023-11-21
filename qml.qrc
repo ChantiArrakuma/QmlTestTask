@@ -1,0 +1,25 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>MyCalendar.qml</file>
+        <file>CalendarPopup.qml</file>
+        <file>DateChanger.qml</file>
+        <file>Diary.qml</file>
+        <file>svg/remove.svg</file>
+        <file>svg/smile.svg</file>
+        <file>svg/add_сircle.svg</file>
+        <file>svg/brainActivity.svg</file>
+        <file>svg/health.svg</file>
+        <file>MetricPopup.qml</file>
+        <file>MetricSlider.qml</file>
+        <file>MetricList.qml</file>
+        <file>MetricChart.qml</file>
+        <file>MetricSeries.qml</file>
+        <file>Clock.qml</file>
+        <file>svg/leftArrow.svg</file>
+        <file>svg/rightArrow.svg</file>
+        <file>svg/add.svg</file>
+        <file>ClockTumbler.qml</file>
+        <file>ClockFade.qml</file>
+    </qresource>
+</RCC>
