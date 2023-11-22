@@ -86,7 +86,7 @@ Item {
                     var tableKeysValue = [id]
                     dataChanger.delVal("Diary", tableKeys, tableKeysValue)
 
-                    GridView.view.diaryUpdate(curentDate[0], curentDate[1], curentDate[2])
+                    root.diaryUpdate(curentDate[0], curentDate[1], curentDate[2])
                 }
 
                 Rectangle {
