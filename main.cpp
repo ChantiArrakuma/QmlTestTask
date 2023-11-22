@@ -3,7 +3,7 @@
 #include <QQmlContext>
 #include <QQuickItem>
 #include <diarylistmodel.h>
-#include <metricListModel.h>
+#include <MetricListModel.h>
 #include <databasechanger.h>
 #include <QVector>
 #include <QtCharts>

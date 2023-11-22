@@ -17,7 +17,7 @@ Window {
     function setDate(yearMonthDay) {
         curentDate = [yearMonthDay[0],yearMonthDay[1],yearMonthDay[2]]
         dateChanger.curDate = [yearMonthDay[0],yearMonthDay[1],yearMonthDay[2]]
-        myModel.updateModel(curentDate[0],curentDate[1],curentDate[2])
+        diary.diaryUpdate(curentDate[0],curentDate[1],curentDate[2])
         metricChart.updateChart()
     }
 

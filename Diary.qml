@@ -17,6 +17,15 @@ Item {
     property string addButtonSVGSourc: "./svg/add.svg"
     property string backgroundAddButtonBorderColor: backgroundColor
 
+    property bool isDiaryTextEditorActive: false
+
+    signal diaryUpdate(var x, var y, var z)
+
+    onDiaryUpdate: (x,y,z) =>{
+        myModel.updateModel(x, y, z)
+        isDiaryTextEditorActive = false
+    }
+
     Control {
 
         anchors.centerIn: parent
@@ -42,18 +51,16 @@ Item {
             property real preferredCellWidth: 100
             property int preferredCellCount: Math.round(width / preferredCellWidth)
 
-            property bool isDiaryTextEditorActive: false
-
             cellWidth: width / preferredCellCount
             cellHeight: cellWidth * 0.8
 
             interactive: contentHeight > height ? !isDiaryTextEditorActive : false
 
+
             model: myModel
 
             delegate: Button {
                 id:delegateId
-
 
                 width: GridView.view.cellWidth - GridView.view.horizontalSpacing
                 height: GridView.view.cellHeight - GridView.view.verticalSpacing
@@ -61,16 +68,17 @@ Item {
                 palette.base: "#f2f0d8"
                 palette.button: "#ebe8c9"
 
+
                 text: diary
 
-                enabled: !GridView.view.isDiaryTextEditorActive
+                enabled: !root.isDiaryTextEditorActive
 
                 onClicked: {
                     enabled = true
                     editorText.text = delegateId.text
                     text = ""
                     diaryTextEditor.visible = true
-                    GridView.view.isDiaryTextEditorActive = true
+                    root.isDiaryTextEditorActive = true
                 }
 
                 onPressAndHold: {
@@ -78,7 +86,7 @@ Item {
                     var tableKeysValue = [id]
                     dataChanger.delVal("Diary", tableKeys, tableKeysValue)
 
-                    myModel.updateModel(curentDate[0], curentDate[1], curentDate[2])
+                    GridView.view.diaryUpdate(curentDate[0], curentDate[1], curentDate[2])
                 }
 
                 Rectangle {
@@ -97,16 +105,16 @@ Item {
                             var tableNames = ["diary", "year", "month", "day"]
                             var tableValues = ["'" + text + "'", curDate[0], curDate[1], curDate[2]]
                             dataChanger.changeValueInTable(tableName,tableNames,tableValues,["Id"],[id])
-
-                            myModel.updateModel(curDate[0], curDate[1], curDate[2])
                             diaryTextEditor.visible = false
-                            delegateId.GridView.view.isDiaryTextEditorActive = false
+
+                            root.diaryUpdate(curDate[0], curDate[1], curDate[2])
                         }
                     }
                 }
             }
         }
     }
+
     Button {
         width: parent.width > parent.height ? parent.height/4 : parent.width/4
         height: width
@@ -146,7 +154,7 @@ Item {
             tableValues = [curentDate[0], curentDate[1], curentDate[2]]
             dataChanger.inDB(tableName, tableNames, tableValues)
 
-            myModel.updateModel(curentDate[0], curentDate[1], curentDate[2])
+            root.diaryUpdate(curentDate[0], curentDate[1], curentDate[2])
         }
     }
 }
